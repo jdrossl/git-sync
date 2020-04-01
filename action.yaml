@@ -1,12 +1,16 @@
 # action.yml
-name: 'Git Sync'
-description: 'Sync two independent repositories'
+name: Git Sync
+description: Sync two independent repositories
 inputs:
-  args:  # id of input
-    description: 'args'
+  repo:
+    description: The repo to sync from
     required: true
+  branch:
+    description: The branch to sync
+    required: false
+    default: ${{ github.ref }}
 runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - ${{ inputs.args }}
+    - ${{ inputs.repo }} ${{ inputs.branch }} ${{ github.repository }} ${{ inputs.branch }}

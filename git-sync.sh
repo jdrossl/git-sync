@@ -35,7 +35,7 @@ echo "DESTINATION=$DESTINATION_REPO:$DESTINATION_BRANCH"
 # git remote add destination "$DESTINATION_REPO"
 # git push destination "${SOURCE_BRANCH}:${DESTINATION_BRANCH}" -f
 
-git clone -b "$DESTINATION_BRANCH" "$DESTINATION_REPO" && cd `basename "$DESTINATION_REPO"`
+git clone -b "$DESTINATION_BRANCH" "$DESTINATION_REPO" && cd `basename "$DESTINATION_REPO"` --verbose
 git remote add community "$SOURCE_REPO"
-git pull community "$SOURCE_BRANCH"
-git push
+git pull community "$SOURCE_BRANCH" --verbose
+git push --verbose
