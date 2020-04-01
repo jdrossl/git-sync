@@ -31,6 +31,11 @@ fi
 echo "SOURCE=$SOURCE_REPO:$SOURCE_BRANCH"
 echo "DESTINATION=$DESTINATION_REPO:$DESTINATION_BRANCH"
 
-git clone "$SOURCE_REPO" --origin source && cd `basename "$SOURCE_REPO" .git`
-git remote add destination "$DESTINATION_REPO"
-git push destination "${SOURCE_BRANCH}:${DESTINATION_BRANCH}" -f
+# git clone "$SOURCE_REPO" --origin source && cd `basename "$SOURCE_REPO" .git`
+# git remote add destination "$DESTINATION_REPO"
+# git push destination "${SOURCE_BRANCH}:${DESTINATION_BRANCH}" -f
+
+git clone -b "$DESTINATION_BRANCH" "$DESTINATION_REPO" && cd `basename "$DESTINATION_REPO"`
+git remote add community "$SOURCE_REPO"
+git pull community "$SOURCE_BRANCH"
+git push
